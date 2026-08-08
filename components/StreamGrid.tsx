@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import YoutubePlayer from "./YoutubePlayer";
+import Link from "next/link";
 
 export const STORAGE_KEY = "multistream-state-v2";
 const LEGACY_STORAGE_KEY = "multistream-video-ids";
@@ -224,22 +225,22 @@ export default function StreamGrid({ slots: initialSlotCount = DEFAULT_SLOTS }: 
                     </div>
                     <div>
                         <h1 className="text-xl font-bold tracking-tight text-white sm:text-2xl">MultiStream</h1>
-                        <p className="text-xs text-zinc-500 sm:text-sm">Tonton beberapa stream YouTube sekaligus dalam satu layar</p>
+                        <p className="text-xs text-zinc-500 sm:text-sm">Watch multiple YouTube live streams simultaneously on one screen.</p>
                     </div>
                 </div>
 
                 <div className="flex flex-wrap items-center gap-2">
                     <div className="flex items-center gap-2 rounded-full border border-zinc-800 bg-zinc-900 px-3 py-1.5 text-xs text-zinc-400">
                         <span className={`h-2 w-2 rounded-full ${activeCount > 0 ? "bg-emerald-500" : "bg-zinc-600"}`} />
-                        {activeCount}/{slots.length} stream aktif
+                        {activeCount}/{slots.length} active streams
                     </div>
 
-                    <button type="button" onClick={openAddModal} disabled={slots.length >= MAX_SLOTS} title="Tambah stream baru" className="rounded-full border border-zinc-800 bg-zinc-900 px-3 py-1.5 text-xs font-medium text-zinc-300 transition-colors hover:border-red-600/50 hover:text-red-400 disabled:cursor-not-allowed disabled:text-zinc-700 disabled:hover:border-zinc-800">+ Tambah Stream</button>
+                    <button type="button" onClick={openAddModal} disabled={slots.length >= MAX_SLOTS} title="Add new stream" className="rounded-full border border-zinc-800 bg-zinc-900 px-3 py-1.5 text-xs font-medium text-zinc-300 transition-colors hover:border-red-600/50 hover:text-red-400 disabled:cursor-not-allowed disabled:text-zinc-700 disabled:hover:border-zinc-800">+ Add Stream</button>
 
-                    <button type="button" onClick={toggleMuteAll} title={isAllMuted ? "Unmute semua stream" : "Mute semua stream"} className="rounded-full border border-zinc-800 bg-zinc-900 px-3 py-1.5 text-xs font-medium text-zinc-400 transition-colors hover:border-red-600/50 hover:text-red-400">{isAllMuted ? "🔊 Unmute Semua" : "🔇 Mute Semua"}</button>
+                    <button type="button" onClick={toggleMuteAll} title={isAllMuted ? "Unmute all streams" : "Mute all streams"} className="rounded-full border border-zinc-800 bg-zinc-900 px-3 py-1.5 text-xs font-medium text-zinc-400 transition-colors hover:border-red-600/50 hover:text-red-400">{isAllMuted ? "🔊 Unmute All" : "🔇 Mute All"}</button>
 
                     {activeCount > 0 && (
-                        <button type="button" onClick={resetAll} className="rounded-full border border-zinc-800 bg-zinc-900 px-3 py-1.5 text-xs font-medium text-zinc-400 transition-colors hover:border-red-600/50 hover:text-red-400">Reset semua</button>
+                        <button type="button" onClick={resetAll} className="rounded-full border border-zinc-800 bg-zinc-900 px-3 py-1.5 text-xs font-medium text-zinc-400 transition-colors hover:border-red-600/50 hover:text-red-400">Reset All</button>
                     )}
                 </div>
             </header>
@@ -268,12 +269,12 @@ export default function StreamGrid({ slots: initialSlotCount = DEFAULT_SLOTS }: 
                                 value={inputs[slot.id] ?? ""}
                                 onChange={(e) => setInputs((prev) => ({ ...prev, [slot.id]: e.target.value }))}
                                 onKeyDown={handleKeyDown(slot.id)}
-                                placeholder="Video ID atau link YouTube…"
+                                placeholder="Video ID or YouTube link…"
                                 className="h-9 w-full rounded-lg border border-zinc-800 bg-zinc-900 px-3 text-sm text-zinc-200 placeholder-zinc-600 outline-none transition-all focus:border-red-600/70 focus:ring-2 focus:ring-red-600/20"
                             />
-                            <button type="button" onClick={() => applySlot(slot.id)} disabled={!(inputs[slot.id] ?? "").trim()} className="h-9 shrink-0 rounded-lg bg-red-600 px-3.5 text-sm font-semibold text-white shadow-md shadow-red-600/25 transition-all hover:bg-red-500 disabled:cursor-not-allowed disabled:bg-zinc-800 disabled:text-zinc-600 disabled:shadow-none">Terapkan</button>
+                            <button type="button" onClick={() => applySlot(slot.id)} disabled={!(inputs[slot.id] ?? "").trim()} className="h-9 shrink-0 rounded-lg bg-red-600 px-3.5 text-sm font-semibold text-white shadow-md shadow-red-600/25 transition-all hover:bg-red-500 disabled:cursor-not-allowed disabled:bg-zinc-800 disabled:text-zinc-600 disabled:shadow-none">Apply</button>
                             {slots.length > MIN_SLOTS && (
-                                <button type="button" onClick={() => removeSlot(slot.id)} title="Hapus slot ini" className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-zinc-800 bg-zinc-900 text-sm text-zinc-500 transition-colors hover:border-red-600/50 hover:text-red-400"
+                                <button type="button" onClick={() => removeSlot(slot.id)} title="Remove this slot" className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-zinc-800 bg-zinc-900 text-sm text-zinc-500 transition-colors hover:border-red-600/50 hover:text-red-400"
                                 >✕</button>
                             )}
                         </div>
@@ -281,8 +282,8 @@ export default function StreamGrid({ slots: initialSlotCount = DEFAULT_SLOTS }: 
                 ))}
             </div>
 
-            <footer className="mt-2 flex flex-wrap items-center justify-center gap-x-6 gap-y-1 text-center text-xs text-zinc-600">
-                <span>Copyright 2026 | Reza Kurniawan</span>
+            <footer className="absolute bottom-5 left-0 right-0 mt-2 flex flex-wrap items-center justify-center gap-x-6 gap-y-1 text-center text-xs text-zinc-600">
+                <span>© Copyright {new Date().getFullYear()} | <Link href="https://github.com/rezakurniawan88/multistream-view-yt" target="_blank" className="underline">Reza Kurniawan</Link></span>
             </footer>
 
             {toast && (
@@ -291,13 +292,13 @@ export default function StreamGrid({ slots: initialSlotCount = DEFAULT_SLOTS }: 
 
             {isAddModalOpen && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm" onClick={closeAddModal} onKeyDown={(e) => { if (e.key === "Escape") closeAddModal(); }}>
-                    <div role="dialog" aria-modal="true" aria-label="Tambah stream baru" onClick={(e) => e.stopPropagation()} className="w-full max-w-md rounded-2xl border border-zinc-800 bg-zinc-900 p-5 shadow-2xl">
+                    <div role="dialog" aria-modal="true" aria-label="Add new stream" onClick={(e) => e.stopPropagation()} className="w-full max-w-md rounded-2xl border border-zinc-800 bg-zinc-900 p-5 shadow-2xl">
                         <div className="mb-4 flex items-center justify-between">
-                            <h2 className="text-base font-bold text-white">Tambah Stream</h2>
+                            <h2 className="text-base font-bold text-white">Add Stream</h2>
                             <button type="button" onClick={closeAddModal} title="Tutup" className="flex h-7 w-7 items-center justify-center rounded-lg text-zinc-500 transition-colors hover:bg-zinc-800 hover:text-white">✕</button>
                         </div>
 
-                        <label className="mb-1.5 block text-xs font-medium text-zinc-400">Video ID atau link YouTube</label>
+                        <label className="mb-1.5 block text-xs font-medium text-zinc-400">Video ID or YouTube Link</label>
                         <input ref={modalInputRef} type="text" value={modalInput}
                             onChange={(e) => {
                                 setModalInput(e.target.value);
@@ -319,8 +320,8 @@ export default function StreamGrid({ slots: initialSlotCount = DEFAULT_SLOTS }: 
                         )}
 
                         <div className="mt-4 flex justify-end gap-2">
-                            <button type="button" onClick={closeAddModal} className="rounded-lg px-3.5 py-2 text-sm font-medium text-zinc-400 transition-colors hover:bg-zinc-800 hover:text-white">Batal</button>
-                            <button type="button" onClick={submitAddModal} disabled={!modalInput.trim()} className="rounded-lg bg-red-600 px-4 py-2 text-sm font-semibold text-white shadow-md shadow-red-600/25 transition-all hover:bg-red-500 disabled:cursor-not-allowed disabled:bg-zinc-800 disabled:text-zinc-600 disabled:shadow-none">Tambah</button>
+                            <button type="button" onClick={closeAddModal} className="rounded-lg px-3.5 py-2 text-sm font-medium text-zinc-400 transition-colors hover:bg-zinc-800 hover:text-white">Cancel</button>
+                            <button type="button" onClick={submitAddModal} disabled={!modalInput.trim()} className="rounded-lg bg-red-600 px-4 py-2 text-sm font-semibold text-white shadow-md shadow-red-600/25 transition-all hover:bg-red-500 disabled:cursor-not-allowed disabled:bg-zinc-800 disabled:text-zinc-600 disabled:shadow-none">Add</button>
                         </div>
                     </div>
                 </div>

@@ -365,15 +365,13 @@ export default function YoutubePlayer({ videoId, playerId, label, onLabelChange,
                     </div>
 
                     {videoId && (
-                        <button type="button" onClick={() => setIsChatOpen((v) => !v)} title={isChatOpen ? "Sembunyikan live chat" : "Tampilkan live chat"} aria-pressed={isChatOpen} className={`hidden h-8 w-8 shrink-0 items-center justify-center rounded-lg transition-colors sm:flex ${isChatOpen ? "bg-red-600/20 text-red-400 ring-1 ring-red-600/40" : "text-zinc-400 hover:bg-zinc-700/60 hover:text-white"}`}>
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" className="h-4 w-4">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M21 12a8 8 0 1 1-3.4-6.53L21 4l-1 3.6A7.96 7.96 0 0 1 21 12Z" />
-                            </svg>
+                        <button type="button" onClick={() => setIsChatOpen((v) => !v)} title={isChatOpen ? "Hide live chat" : "Show live chat"} aria-pressed={isChatOpen} className={`hidden h-8 w-8 shrink-0 items-center justify-center rounded-lg transition-colors sm:flex ${isChatOpen ? "bg-red-600/20 text-red-400 ring-1 ring-red-600/40" : "text-zinc-400 hover:bg-zinc-700/60 hover:text-white"}`}>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4"><path d="M16 10a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 14.286V4a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" /><path d="M20 9a2 2 0 0 1 2 2v10.286a.71.71 0 0 1-1.212.502l-2.202-2.202A2 2 0 0 0 17.172 19H10a2 2 0 0 1-2-2v-1" /></svg>
                         </button>
                     )}
 
                     {videoId && (
-                        <a href={`https://www.youtube.com/watch?v=${videoId}`} target="_blank" rel="noopener noreferrer" title="Buka di YouTube" className="hidden h-8 w-8 shrink-0 items-center justify-center rounded-lg text-zinc-400 transition-colors hover:bg-zinc-700/60 hover:text-white sm:flex">
+                        <a href={`https://www.youtube.com/watch?v=${videoId}`} target="_blank" rel="noopener noreferrer" title="Open in YouTube" className="hidden h-8 w-8 shrink-0 items-center justify-center rounded-lg text-zinc-400 transition-colors hover:bg-zinc-700/60 hover:text-white sm:flex">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" className="h-4 w-4">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14 21 3" />
                             </svg>
@@ -400,7 +398,7 @@ export default function YoutubePlayer({ videoId, playerId, label, onLabelChange,
                             className="h-7 w-24 shrink-0 rounded-md border border-red-600/50 bg-zinc-950 px-2 text-xs font-medium text-zinc-100 outline-none focus:ring-2 focus:ring-red-600/20 sm:w-28"
                         />
                     ) : (
-                        <button type="button" onClick={() => setIsEditingLabel(true)} title="Klik untuk ganti nama stream" className="hidden max-w-28 shrink-0 truncate rounded-md px-1.5 py-1 text-xs font-medium text-zinc-500 transition-colors hover:bg-zinc-700/60 hover:text-white sm:block">{label}</button>
+                        <button type="button" onClick={() => setIsEditingLabel(true)} title="Click to change stream name" className="hidden max-w-28 shrink-0 truncate rounded-md px-1.5 py-1 text-xs font-medium text-zinc-500 transition-colors hover:bg-zinc-700/60 hover:text-white sm:block">{label}</button>
                     )}
                 </div>
 

@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# MultiStream View YouTube
+
+![MultiStreamViewYoutube](/public/images/preview/demo_preview.png)
+
+MultiStream View YouTube is a modern web application built with Next.js that lets you watch multiple YouTube streams at the same time in a single screen. It is designed for users who want a simple and focused multi-view experience without switching between tabs.
+
+## Features
+
+- Watch multiple YouTube videos simultaneously
+- Add and remove stream panels dynamically
+- Enter either a YouTube video ID or a full YouTube URL
+- Keep your stream setup saved in the browser with local storage
+- Mute or unmute all streams with one click
+- Rename stream labels for easier organization
+- Open live chat panels for supported streams
+
+## Tech Stack
+
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+- YouTube IFrame API
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
+Make sure you have the following installed on your machine:
+
+- Node.js 18 or newer
+- pnpm
+
+### Installation
+
+Clone the repository and install dependencies:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Run the development server :
+```bash
+pnpm dev
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Then open:
+```
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Usage
+1. Open the app in your browser.
+2. Click the “Add Stream” button.
+3. Enter a YouTube video ID or a valid YouTube URL.
+4. Click “Apply” to load the video.
+5. Use the mute, reset, and label controls to manage your streams.
 
-## Learn More
+### Notes
+- Stream state is stored in the browser, so refreshing the page will preserve your current setup.
+- Some YouTube content may require public accessibility for playback or live chat features.
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### License
+This project is provided as-is for educational and personal use.
