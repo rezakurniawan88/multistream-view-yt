@@ -304,21 +304,21 @@ export default function YoutubePlayer({ videoId, playerId, label, onLabelChange,
                                     <path strokeLinecap="round" d="M21 21l-4.35-4.35M17 10.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z" />
                                 </svg>
                             </div>
-                            <p className="text-sm font-medium text-zinc-500">Belum ada video</p>
-                            <p className="text-xs text-zinc-600">Masukkan link YouTube di bawah</p>
+                            <p className="text-sm font-medium text-zinc-500">No video yet.</p>
+                            <p className="text-xs text-zinc-600">Enter the YouTube link below.</p>
                         </div>
                     )}
                     {status === "loading" && (
                         <div className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-3 bg-zinc-950">
                             <div className="h-8 w-8 animate-spin rounded-full border-2 border-zinc-700 border-t-red-600" />
-                            <p className="text-xs font-medium text-zinc-500">Memuat player…</p>
+                            <p className="text-xs font-medium text-zinc-500">Loading player…</p>
                         </div>
                     )}
                     {status === "error" && (
                         <div className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-2 bg-zinc-950 px-4 text-center">
                             <span className="text-2xl">⚠️</span>
-                            <p className="text-sm text-zinc-400">Video tidak dapat dimuat</p>
-                            <p className="text-xs text-zinc-600">Periksa kembali Video ID / link yang dimasukkan</p>
+                            <p className="text-sm text-zinc-400">Video cannot be loaded</p>
+                            <p className="text-xs text-zinc-600">Please check the Video ID / link that you entered.</p>
                         </div>
                     )}
                     <div ref={wrapperRef} className="h-full w-full" />
